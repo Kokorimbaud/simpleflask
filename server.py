@@ -11,11 +11,11 @@ def create_app():
     def all_critics():
         return get_critics()
 
-    @app.route('/critics/random', methods=["GET"])
+    @app.route('/critics/random/', methods=["GET"])
     def random_critic():
         return pick_random_critic(id)
 
-    @app.route('/critics/individual', methods=['GET'])
+    @app.route('/critics/individual/', methods=['GET'])
     def get_individual_critic():
         return individual_critic(id)
 

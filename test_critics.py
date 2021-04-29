@@ -26,10 +26,3 @@ def test_name_to_url():
     name = name_to_url()
     assert name == "A.%20O.%20Scott"
 
-
-@responses.activate
-def test_individual_critic():
-    id = "A.%20O.%20Scott"
-    responses.add(responses.GET, URL_CRITICS, status=200)
-    individual = individual_critic(id)
-    print(individual)
