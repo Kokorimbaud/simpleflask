@@ -1,4 +1,4 @@
-URL_CRITICS = f"https://api.nytimes.com/svc/movies/v2/critics/{id}.json"
+URL_CRITICS = "https://api.nytimes.com/svc/movies/v2/"
 params = {'api-key':'9eU3GwocQRJ3rOcFjBMAYh5MRUAh5WbG'}
 
 expected_result_one = {

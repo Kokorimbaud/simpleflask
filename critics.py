@@ -4,22 +4,24 @@ import random
 from data import URL_CRITICS, params
 
 
-def get_critics(id="all"):
-    response = requests.get(URL_CRITICS, params=params)
-    print(response)
+def get_critics():
+    URL = f"{URL_CRITICS}/critics/all.json"
+    response = requests.get(URL, params=params)
+    print(response.json()["num_results"])
     return response.json(), response.json()["num_results"]
 
 
-def pick_random_critic(id):
-    all, number_of_all = get_critics(id)
-    pick_one = random.randint(0, number_of_all-1)
+def pick_random_critic():
+    all, number_of_all = get_critics()
+    pick_one = random.randint(0, number_of_all)
+    print(f'The one: {pick_one}')
     random_critic = all["results"][pick_one]
     display_name = list(random_critic["display_name"])
     return random_critic, display_name
 
 
 def name_to_url():
-    display_name = pick_random_critic(id)[1]
+    display_name = pick_random_critic()[1]
     names = []
     for n in display_name:
         if n != ' ':
@@ -30,9 +32,9 @@ def name_to_url():
     return url_suffix
 
 
-def individual_critic(id=id):
-    id = name_to_url()
-    print(URL_CRITICS)
-    URL = f"https://api.nytimes.com/svc/movies/v2/critics/{id}.json"
+def individual_critic():
+    individual = name_to_url()
+    URL = f"{URL_CRITICS}critics/{individual}.json"
+    print(URL)
     response = requests.get(URL, params=params)
     return response.json()

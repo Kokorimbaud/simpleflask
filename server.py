@@ -13,15 +13,11 @@ def create_app():
 
     @app.route('/critics/random/', methods=["GET"])
     def random_critic():
-        return pick_random_critic(id)
+        return pick_random_critic()[0]
 
     @app.route('/critics/individual/', methods=['GET'])
     def get_individual_critic():
-        return individual_critic(id)
-
-    @app.route('/reviews/picks', methods=['GET'])
-    def get_critics_picks():
-        pass
+        return individual_critic()
 
     return app
 
