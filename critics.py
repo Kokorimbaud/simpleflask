@@ -2,6 +2,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 import random
 from data import URL_MOVIES, params
+from urllib.parse import quote
 
 
 def get_critics():
@@ -16,24 +17,12 @@ def pick_random_critic():
     pick_one = random.randint(0, number_of_all-1)
     print(f'The one: {pick_one}')
     random_critic = all["results"][pick_one]
-    display_name = list(random_critic["display_name"])
+    display_name = str(random_critic["display_name"])
     return random_critic, display_name
 
 
-def name_to_url():
-    display_name = pick_random_critic()[1]
-    names = []
-    for n in display_name:
-        if n != ' ':
-            names.append(n)
-        elif n == ' ':
-            names.append("%20")
-    url_suffix = ''.join(names)
-    return url_suffix
-
-
 def individual_critic():
-    individual = name_to_url()
+    individual = quote(pick_random_critic()[1])
     URL = f"{URL_MOVIES}critics/{individual}.json"
     print(URL)
     response = requests.get(URL, params=params)
