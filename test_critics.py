@@ -1,10 +1,10 @@
 import pytest
 import responses
-from critics import get_critics, pick_random_critic, name_to_url, individual_critic
+from critics import get_critics, pick_random_critic, individual_critic
 from data import expected_result, expected_result_one, URL_MOVIES
 import json
 
-URL_CRITICS_ALL = f"{URL_MOVIES}/critics/all.json"
+URL_CRITICS_ALL = f"{URL_MOVIES}critics/all.json"
 
 
 @responses.activate
@@ -23,8 +23,11 @@ def test_pick_random_critic():
 
 
 @responses.activate
-def test_name_to_url():
-    responses.add(responses.GET, URL_CRITICS_ALL, json=expected_result_one, status=200)
-    name = name_to_url()
-    assert name == "A.%20O.%20Scott"
+def test_individual_critic():
+    URL = f"{URL_MOVIES}critics/A.%20O.%20Scott.json"
+    responses.add(responses.GET, URL, json=expected_result_one, status=200)
+    print(individual_critic())
+
+
+
 

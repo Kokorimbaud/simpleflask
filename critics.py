@@ -6,8 +6,9 @@ from urllib.parse import quote
 
 
 def get_critics():
-    URL = f"{URL_MOVIES}/critics/all.json"
+    URL = f"{URL_MOVIES}critics/all.json"
     response = requests.get(URL, params=params)
+    print(URL)
     print(response.json()["num_results"])
     return response.json(), response.json()["num_results"]
 
