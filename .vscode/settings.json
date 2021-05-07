@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/Users/macuser5/.pyenv/versions/3.9.2/bin/python"
+    "python.pythonPath": "/Users/macuser5/.pyenv/versions/3.9.2/bin/python",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }

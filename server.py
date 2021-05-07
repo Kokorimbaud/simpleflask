@@ -1,5 +1,7 @@
 from flask import Flask
-from critics import get_critics, pick_random_critic, individual_critic
+from critics import get_critics, pick_random_critic, random_critic, the_one_critic
+
+
 def create_app():
     app = Flask("test")
 
@@ -17,9 +19,14 @@ def create_app():
 
     @app.route('/critics/individual/', methods=['GET'])
     def get_individual_critic():
-        return individual_critic()
+        return random_critic()
+
+    @app.route('/critics/stephen-holden/', methods=['GET'])
+    def get_stephen_holden():
+        return the_one_critic()
 
     return app
+
 
 if __name__ == "__main__":
     app = create_app()
